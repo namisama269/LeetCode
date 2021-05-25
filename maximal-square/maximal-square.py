@@ -10,13 +10,6 @@ class Solution:
                     dp[i][j] = int(matrix[i][j])
                 elif matrix[i][j] == '1':
                     # Check if can increase the square at this location
-                    prev = dp[i-1][j-1]
-                    steps = 0
-                    for k in range(1, prev+1):
-                        if matrix[i-k][j] == '1' and matrix[i][j-k] == '1':
-                            steps += 1
-                        else:
-                            break
-                    dp[i][j] = 1 + steps
+                    dp[i][j] = 1 + min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])
         
         return max(map(max,dp))**2
