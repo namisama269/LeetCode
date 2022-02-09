@@ -1,15 +1,17 @@
 class Solution:
     def wordPattern(self, pattern: str, s: str) -> bool:
-        ht = {}
+        c2w, w2c = {}, {}
         n = len(pattern)
         words = s.split()
         if len(pattern) != len(words):
             return False
         
-        for i in range(n):
-            if pattern[i] in ht:
-                if ht[pattern[i]] != words[i]:
-                    return False
-            ht[pattern[i]] = words[i]
+        for c, w in zip(pattern, words):
+            if c in c2w and c2w[c] != w:
+                return False
+            if w in w2c and w2c[w] != c:
+                return False
+            c2w[c] = w
+            w2c[w] = c
             
-        return len(set(pattern)) == len(set(words))
+        return True
