@@ -1,8 +1,5 @@
 class Solution:
-    """
-    dp[i][v] = number of str len i only vowels and lexicographically sorted
-    ending in vowel v
-    """
+
     def countVowelStrings(self, n: int) -> int:
         dp = [[0] * 5 for _ in range(n)]
         
@@ -14,3 +11,7 @@ class Solution:
                 dp[i][v] = sum(dp[i-1][:v+1]) 
         
         return sum(dp[-1])
+    
+    
+    
+    
